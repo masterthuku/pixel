@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       <Button variant={"primary"} className="text-white">
-        Pixxel
+       
       </Button>
     </div>
   );
