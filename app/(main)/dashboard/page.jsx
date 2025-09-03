@@ -7,6 +7,7 @@ import { Plus, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { BarLoader } from "react-spinners";
 import NewProjectModal from "./_components/NewProjectModal";
+import ProjectGrid from "./_components/ProjectGrid";
 
 const Dashboard = () => {
   const [showNewProjectModal, setshowNewProjectModal] = useState(false);
@@ -37,7 +38,7 @@ const Dashboard = () => {
         {isLoading ? (
           <BarLoader width={"100%"} color="white" />
         ) : projects && projects.length > 0 ? (
-          <></>
+          <ProjectGrid projects={projects} />
         ) : (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <h3 className="text-2xl font-semibold text-white mb-3">
