@@ -8,7 +8,7 @@ import { Loader2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const CanvasEditor = ({ project }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -179,6 +179,21 @@ const CanvasEditor = ({ project }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [canvasEditor, project]);
+
+  useEffect(() => {
+    if (!canvasEditor) return;
+
+    switch (activeTool) {
+      case "crop":
+        canvasEditor.defaultCursor = "crosshair";
+        canvasEditor.hoverCursor = "crosshair";
+        break;
+
+      default:
+        canvasEditor.defaultCursor = "default";
+        canvasEditor.hoverCursor = "move";
+    }
+  }, [canvasEditor, activeTool]);
 
   return (
     <div
